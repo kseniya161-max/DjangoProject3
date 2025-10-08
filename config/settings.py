@@ -15,7 +15,8 @@ import psycopg2
 import os
 from dotenv import load_dotenv
 
-load_dotenv(override=True)
+# load_dotenv(override=True)
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
