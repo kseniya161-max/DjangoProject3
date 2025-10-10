@@ -3,6 +3,7 @@ from .models import Product, Category
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    """Административный интерфейс для управления экземплярами Product."""
     list_display = ('id', 'name', 'category', 'price')
     list_filter = ('category',)
     search_fields = ('name', 'description',)
@@ -10,6 +11,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    """Административный интерфейс для управления экземплярами Category."""
     list_display = ('id','name',)
     list_filter = ()
     search_fields = ('name', 'description',)
