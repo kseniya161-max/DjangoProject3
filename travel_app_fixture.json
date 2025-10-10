@@ -1,0 +1,65 @@
+[
+{
+    "model": "travel_app.product",
+    "pk": 1,
+    "fields": {
+        "name": "Турция",
+        "description": "Все включено",
+        "photo": "products/Турция_coM4GIt.webp",
+        "category": 1,
+        "price": "120000.00",
+        "created_at": "2025-10-10T09:00:35.086Z",
+        "updated_at": "2025-10-10T09:00:35.086Z"
+    }
+},
+{
+    "model": "travel_app.product",
+    "pk": 2,
+    "fields": {
+        "name": "Санкт-Петрбург",
+        "description": "Паромом",
+        "photo": "products/Р_YxYtmLh.png",
+        "category": 2,
+        "price": "70000.00",
+        "created_at": "2025-10-10T09:01:43.162Z",
+        "updated_at": "2025-10-10T09:01:43.162Z"
+    }
+},
+{
+    "model": "travel_app.product",
+    "pk": 3,
+    "fields": {
+        "name": "Тест -Шенген",
+        "description": "Шенген",
+        "photo": "products/Ш_1RlMAiS.jpg",
+        "category": 3,
+        "price": "150000.00",
+        "created_at": "2025-10-10T09:02:31.714Z",
+        "updated_at": "2025-10-10T09:02:31.714Z"
+    }
+},
+{
+    "model": "travel_app.category",
+    "pk": 1,
+    "fields": {
+        "name": "Горящие путевки",
+        "description": "Зарубежные горящие"
+    }
+},
+{
+    "model": "travel_app.category",
+    "pk": 2,
+    "fields": {
+        "name": "Путешествия по России",
+        "description": "Только Россия"
+    }
+},
+{
+    "model": "travel_app.category",
+    "pk": 3,
+    "fields": {
+        "name": "Тест-Путшествие",
+        "description": "Тест"
+    }
+}
+]
