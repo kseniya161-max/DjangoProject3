@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from Travel_app.models import Product, Category
 
 class Command(BaseCommand):
+    """Добавляем и удаляем тестовые продукты"""
     help = 'Добавляет тестовые продукты в базу данных'
 
     def handle(self, *args, **kwargs):

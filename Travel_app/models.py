@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Category(models.Model):
+    """ Класс для представления категорий и настравания полей в классе  Category"""
     name = models.CharField(max_length=100, verbose_name="Наименование")
     description = models.CharField(max_length=200, verbose_name="Описание")
 
@@ -14,6 +15,7 @@ class Category(models.Model):
         ordering = ['name']
 
 class Product(models.Model):
+    """ Класс для представления продукта и настравания полей в классе Product"""
     name = models.CharField(max_length=100, verbose_name="Наименование")
     description = models.CharField(max_length=200, verbose_name="Описание")
     photo = models.ImageField(upload_to='products/', verbose_name="Изображение")
