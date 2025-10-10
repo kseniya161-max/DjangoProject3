@@ -213,5 +213,7 @@ config.py
 # Игнорируем файлы баз данных SQLite
 *.sqlite3
 db.sqlite3
+.idea/
+
 
 

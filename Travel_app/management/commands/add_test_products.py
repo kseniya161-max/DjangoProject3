@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from new_app.models import Product, Category
+from Travel_app.models import Product, Category
 
 class Command(BaseCommand):
     help = 'Добавляет тестовые продукты в базу данных'

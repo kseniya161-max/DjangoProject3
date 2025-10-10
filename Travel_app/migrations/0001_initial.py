@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('price', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Цена за единицу товара')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создание')),
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Дата изменения')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='new_app.category', verbose_name='Категория')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Travel_app.category', verbose_name='Категория')),
             ],
             options={
                 'verbose_name': 'Наименование',
