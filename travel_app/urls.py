@@ -6,6 +6,6 @@ app_name = "travel_app"
 
 urlpatterns = [
     path('', home, name='home'),
-    path('travel_product/<int: product_id>', product_detail, name='product_detail')
+    path('travel_product/<int: product_id>/', product_detail, name='product_detail')
 
 ]
