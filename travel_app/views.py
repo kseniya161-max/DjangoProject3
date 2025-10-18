@@ -3,7 +3,8 @@ from .models import Product
 
 def home(request):
     """Отображает главную страницу приложения"""
-    return render(request, 'home.html')
+    products = Product.objects.all()
+    return render(request, 'home.html', {'products': products})
 
 
 def product_detail(request, product_id):
