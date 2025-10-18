@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ travel_product.title }}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet"
- href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% extends 'base.html' %}
 
-</head>
-<body>
-<h1 class="text-center mt-4 mb-4">{{ travel_product.name }}</h1>
+{% block title %}{{ travel_product.title }}{% endblock %}
+
+{% block content %}
 <div class="card" style="width: 18rem;">
     {% if travel_product.photo %}
         <img src="{{ travel_product.photo.url }}" class="card-img-top" alt="{{ travel_product.title }}">
@@ -18,12 +10,11 @@
         <img src="/media/P.png" class="card-img-top" alt="default_image">
     {% endif %}
     <div class="card-body">
-    <h5 class="card-title">{{ travel_product.name }}</h5>
-    <p class="card-text">{{ travel_product.description }}</p>
-    <p class="card-text"><strong>Цена:</strong>{{ travel_product.price }} руб.</p>
-    <p class="card-text"><strong>Категория:</strong>{{ travel_product.category.name }}</p>
-    <a href="#" class="btn btn-primary">перейти</a>
-  </div>
+        <h5 class="card-title">{{ travel_product.name }}</h5>
+        <p class="card-text">{{ travel_product.description }}</p>
+        <p class="card-text"><strong>Цена:</strong> {{ travel_product.price }} руб.</p>
+        <p class="card-text"><strong>Категория:</strong> {{ travel_product.category.name }}</p>
+        <a href="#" class="btn btn-primary">перейти</a>
+    </div>
 </div>
-</body>
-</html>
+{% endblock %}
