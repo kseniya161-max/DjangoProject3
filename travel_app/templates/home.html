@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
 <div class="container">
     <h1 class="text-center mt-4 mb-4">Список товаров</h1>
     <div class="row">
@@ -17,7 +13,7 @@
                     {% if product.photo %}
                         <img src="{{ product.photo.url }}" class="card-img-top" alt="{{ product.name }}">
                     {% else %}
-                        <img src="{% static 'media/products/default_image.jpg' %}" class="card-img-top" alt="default_image">
+                        <img src="{% static 'media/products/P.png' %}" class="card-img-top" alt="default_image">
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
@@ -29,5 +25,4 @@
         {% endfor %}
     </div>
 </div>
-</body>
-</html>
+{% endblock %}
