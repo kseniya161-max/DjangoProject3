@@ -11,3 +11,8 @@ def product_detail(request, product_id):
     """Отображает страницу продукта"""
     travel_product = get_object_or_404(Product, id=product_id)
     return render(request, 'product_detail.html', {'travel_product': travel_product })
+
+
+def contact(request):
+    context = {"email": "xxx@mail.ru"}
+    return render(request, 'contact.html', context)
