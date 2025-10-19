@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, ProductForm
+from django.core.paginator import Paginator
+
 
 
 def home(request):
     """Отображает главную страницу приложения"""
     products = Product.objects.all()
-    return render(request, 'home.html', {'products': products})
+    paginator = Paginator(products, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'home.html', {'page_obj': page_obj})
 
 
 def product_detail(request, product_id):

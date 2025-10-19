@@ -7,7 +7,7 @@
 <div class="container">
     <h1 class="text-center mt-4 mb-4">Список товаров</h1>
     <div class="row">
-        {% for product in products %}
+        {% for product in page_obj %}
             <div class="col-md-4">
                 <div class="card mb-4">
                     {% if product.photo %}
@@ -24,5 +24,22 @@
             </div>
         {% endfor %}
     </div>
+
+    <div class="pagination">
+        <span class="step-links">
+             {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; первый</a>
+                <a href="?page={{ page_obj.previous_page_number }}">предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}  {# Проверка на наличие следующей страницы #}
+                <a href="?page={{ page_obj.next_page_number }}">следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>  {# Закрытие контейнера для навигации #}
 </div>
 {% endblock %}
