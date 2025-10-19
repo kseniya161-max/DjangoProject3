@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 
 class Category(models.Model):
@@ -33,3 +34,8 @@ class Product(models.Model):
         ordering = ['name']
 
 
+class ProductForm(forms.ModelForm):
+    """Класс добавления формы для заполнения"""
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'photo', 'category', 'price']
