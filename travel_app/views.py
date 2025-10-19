@@ -14,5 +14,4 @@ def product_detail(request, product_id):
 
 
 def contact(request):
-    context = {"email": "xxx@mail.ru"}
-    return render(request, 'contact.html', context)
+    return render(request, 'contact.html', {})
