@@ -9,7 +9,7 @@ DjangoProject3
 ## Установка
 
 1. **Клонируйте репозиторий:**
-   https://github.com/kseniya161-max/DjangoProject3/pull/1
+   https://github.com/kseniya161-max/DjangoProject3/pull/2
 2. Установите Poetry (если он еще не установлен)
 
 3. Установите зависимости:
