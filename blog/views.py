@@ -26,7 +26,7 @@ class BlogPostCreateView(CreateView):
     model = BlogPost
     template_name = 'form_blog.html'
     fields = ['header', 'content', 'preview','is_published']
-    success_url = reverse_lazy('blog:post_list')
+    success_url = reverse_lazy('blog:home')
 
 
 class BlogUpdateView(UpdateView):
@@ -34,13 +34,13 @@ class BlogUpdateView(UpdateView):
     model = BlogPost
     template_name = 'form_blog.html'
     fields = ['header', 'content', 'preview', 'is_published']
-    success_url = reverse_lazy('blog:post_list')
+    success_url = reverse_lazy('blog:home')
 
 
 class BlogDeleteView(DeleteView):
     """Удаляет запись Блога"""
     model = BlogPost
     template_name = 'blog_confirm_delete.html'
-    success_url = reverse_lazy('blog:post_list')
+    success_url = reverse_lazy('blog:home')
 
 
