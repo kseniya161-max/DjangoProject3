@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 
-</body>
-</html>
+<h2>{{ post.header }}</h2>
+<p>{{ post.content }}</p>
+<p>Дата создания: {{ post.created_at }}</p>
+<p>Количество просмотров: {{ post.views_count }}</p>
+<p>Опубликовано: {{ post.is_published }}</p>
+<a href="{% url 'blog:post_update' post.pk %}">Редактировать</a>
+<a href="{% url 'blog:post_delete' post.pk %}">Удалить</a>
+<a href="{% url 'blog:home' %}">Назад к списку</a>
+{% endblock %}
