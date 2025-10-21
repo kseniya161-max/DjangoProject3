@@ -12,7 +12,7 @@ class HomeListView(ListView):
     """Отображает главную страницу приложения"""
     model = Product
     template_name = 'home.html'
-    context_object_name= 'products'
+    context_object_name= 'page_object'
     paginate_by = 6
 
     def get_queryset(self):
@@ -33,7 +33,7 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'product_detail.html'
     context_object_name= 'travel_product'
-    pk_url = 'product_id'
+
 
 #
 # def product_detail(request, product_id):
@@ -54,6 +54,8 @@ class AddProductView(CreateView):
     form_class = ProductForm
     template_name = 'add_product.html'
     success_url = reverse_lazy('travel_app:home')
+
+
 # def add_product(request):
 #     if request.method == 'POST':
 #         form = ProductForm(request.POST, request.FILES)
