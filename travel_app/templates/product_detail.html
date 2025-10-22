@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ travel_product.title }}{% endblock %}
+{% block title %}{{ travel_product.name }}{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="card" style="width: 18rem;">
         {% if travel_product.photo %}
-            <img src="{{ travel_product.photo.url }}" class="card-img-top" alt="{{ travel_product.title }}">
+            <img src="{{ travel_product.photo.url }}" class="card-img-top" alt="{{ travel_product.name }}">
         {% else %}
             <img src="/media/P.png" class="card-img-top" alt="default_image">
         {% endif %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 
 class Category(models.Model):
@@ -10,8 +11,8 @@ class Category(models.Model):
         return f'{self.name} {self.description}'
 
     class Meta:
-        verbose_name = 'Наименование'
-        verbose_name_plural = 'Наименования'
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
         ordering = ['name']
 
 class Product(models.Model):
@@ -28,8 +29,18 @@ class Product(models.Model):
         return f'{self.name} {self.price}'
 
     class Meta:
-        verbose_name = 'Наименование'
-        verbose_name_plural = 'Наименование'
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
         ordering = ['name']
 
 
+class ProductForm(forms.ModelForm):
+    """Класс добавления формы для заполнения"""
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'photo', 'category', 'price']
+
+    def __init__(self, *args, **kwargs):
+        super(ProductForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})

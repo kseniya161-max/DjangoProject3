@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Блоговые записи</h2>
+<ul>
+    {% for post in posts %}
+    <li>
+        <a href="{% url 'blog:blog_detail' post.pk %}">{{ post.header }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'blog:add_post' %}">Создать новую запись</a>
+{% endblock %}
+
