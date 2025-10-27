@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, TemplateView, CreateView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView
 from .models import Product, ProductForm
 from django.core.paginator import Paginator
 
@@ -32,6 +32,14 @@ class AddProductView(CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'add_product.html'
+    success_url = reverse_lazy('travel_app:home')
+
+
+class ProductUpdateView(UpdateView):
+    """Редактирует продукт"""
+    model = Product
+    form_class = ProductForm
+    template_name = 'update_product.html'
     success_url = reverse_lazy('travel_app:home')
 
 
