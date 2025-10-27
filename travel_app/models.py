@@ -24,7 +24,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена за единицу товара")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создание")
     updated_at = models.DateTimeField(auto_now=True,verbose_name="Дата изменения")
-    is_featured = models.BooleanField(default=False, verbose_name="Избранный")
+    is_favorite = models.BooleanField(default=False, verbose_name="Избранное")
 
     def __str__(self):
         return f'{self.name} {self.price}'

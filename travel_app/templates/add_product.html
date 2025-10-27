@@ -7,14 +7,9 @@
     <form method="POST" enctype="multipart/form-data">
          {% csrf_token %}
          {{ form.as_p }}
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="is_favorite" name="is_favorite">
-            <label class="form-check-label" for="is_favorite">Избранное</label>
-        </div>
-            <button type="submit" class="btn btn-primary">Добавить товар</button>
+
+         <button type="submit" class="btn btn-primary">Добавить товар</button>
     </form>
-
 </div>
+
 {% endblock %}
-
-

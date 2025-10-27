@@ -20,7 +20,7 @@ class ProductForm(ModelForm):
     """ Форма Продукта"""
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['name', 'description', 'photo', 'category', 'price', 'is_favorite']
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
@@ -29,7 +29,6 @@ class ProductForm(ModelForm):
         self.fields['photo'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Добавьте фото'})
         self.fields['category'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите категорию товара, например: горящие путевки'})
         self.fields['price'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите цену товара'})
-        self.fields['is_featured'].widget.attrs.update({'class': 'form-check-input'})
 
 
     def clean_name(self):
