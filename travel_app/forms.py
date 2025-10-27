@@ -33,7 +33,7 @@ class ProductForm(ModelForm):
         self.fields['is_favorite'].label = 'Избранное'
 
 
-def clean_name(self):
+    def clean_name(self):
         """ Проверяет на валидацию имени"""
         name = self.cleaned_data.get('name')
         for i in FORBIDDEN_WORDS:
