@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
-from .models import Product, ProductForm
+from .models import Product
 from django.core.paginator import Paginator
 from .forms import ProductForm
 
