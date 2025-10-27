@@ -1,7 +1,7 @@
 from django.contrib.admin import views
 from django.urls import path, include
 from travel_app. apps import NewAppConfig
-from travel_app.views import HomeListView, ProductDetailView, ContactView,AddProductView
+from travel_app.views import HomeListView, ProductDetailView, ContactView,AddProductView, ProductUpdateView
 
 app_name = "travel_app"
 
