@@ -29,9 +29,11 @@ class ProductForm(ModelForm):
         self.fields['photo'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Добавьте фото'})
         self.fields['category'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите категорию товара, например: горящие путевки'})
         self.fields['price'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите цену товара'})
+        self.fields['is_favorite'].widget = forms.CheckboxInput(attrs={'class': 'form-check-input'})
+        self.fields['is_favorite'].label = 'Избранное'
 
 
-    def clean_name(self):
+def clean_name(self):
         """ Проверяет на валидацию имени"""
         name = self.cleaned_data.get('name')
         for i in FORBIDDEN_WORDS:
