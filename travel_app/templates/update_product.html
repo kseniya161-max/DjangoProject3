@@ -7,9 +7,12 @@
     <form method="POST" enctype="multipart/form-data">
          {% csrf_token %}
          {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Сохранить</button>
+
+         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 </div>
+
 {% endblock %}
+
 
 
