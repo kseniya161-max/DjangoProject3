@@ -32,15 +32,3 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ['name']
-
-
-class ProductForm(forms.ModelForm):
-    """Класс добавления формы для заполнения"""
-    class Meta:
-        model = Product
-        fields = ['name', 'description', 'photo', 'category', 'price']
-
-    def __init__(self, *args, **kwargs):
-        super(ProductForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs.update({'class': 'form-control'})
