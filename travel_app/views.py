@@ -28,6 +28,7 @@ class ContactView(TemplateView):
 
 
 class AddProductView(CreateView):
+    """Создает продукт"""
     model = Product
     form_class = ProductForm
     template_name = 'add_product.html'
