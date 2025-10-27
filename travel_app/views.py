@@ -37,6 +37,7 @@ class AddProductView(CreateView):
     success_url = reverse_lazy('travel_app:home')
 
 
+
 class ProductUpdateView(UpdateView):
     """Редактирует продукт"""
     model = Product

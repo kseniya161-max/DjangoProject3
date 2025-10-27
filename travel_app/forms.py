@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from prompt_toolkit.validation import ValidationError
+from django.core.exceptions import ValidationError
 from django import forms
 from travel_app.models import Product
 
@@ -29,6 +29,7 @@ class ProductForm(ModelForm):
         self.fields['photo'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Добавьте фото'})
         self.fields['category'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите категорию товара, например: горящие путевки'})
         self.fields['price'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите цену товара'})
+        self.fields['is_featured'].widget.attrs.update({'class': 'form-check-input'})
 
 
     def clean_name(self):
@@ -49,5 +50,10 @@ class ProductForm(ModelForm):
         return description
 
 
+    def clean_price(self):
+        price =  self.cleaned_data.get('price')
 
+        if price is None or price <= 0:
+            raise ValidationError('Цена не может быть равна или меньше 0')
+        return price
 
