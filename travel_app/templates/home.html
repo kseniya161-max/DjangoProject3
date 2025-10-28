@@ -6,6 +6,7 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center mt-4 mb-4">Список товаров</h1>
+    <a href="{% url 'travel_app:add_product' %}" class="btn btn-warning mt-4 mb-4">Создать товар</a>
     <div class="row">
         {% for product in page_object %}
             <div class="col-md-4">
@@ -19,6 +20,8 @@
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.description|slice:":100" }}{% if product.description|length > 100 %}...{% endif %}</p>
                         <a href="{% url 'travel_app:product_detail' product.id %}" class="btn btn-primary">Подробнее</a>
+                        <a href="{% url 'travel_app:product_update' product.id %}" class="btn btn-primary">Редактировать</a>
+                        <a href="{% url 'travel_app:product_delete' product.id %}" class="btn btn-danger mt-4">Удалить</a>
                     </div>
                 </div>
             </div>
