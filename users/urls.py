@@ -1,5 +1,4 @@
 from django.contrib.auth.views import LoginView, LogoutView
-
 from users.apps import UsersConfig
 from django.urls import path, include
 from users. views import CreateUserView

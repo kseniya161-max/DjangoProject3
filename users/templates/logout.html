@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Выйти из системы{% endblock %}
+
+{% block content %}
+<h2>Выход</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">выход</button>
+</form>
+{% endblock %}
