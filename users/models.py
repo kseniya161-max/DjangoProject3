@@ -8,6 +8,8 @@ class User(AbstractUser):
     country = models.CharField(max_length=50, verbose_name= 'Страна',blank=True, null=True, help_text='Введите страну')
     avatar = models.ImageField(upload_to='users/avatar', verbose_name= 'Аватар',blank=True, null=True, help_text='Загрузите фото')
 
+    token = models.CharField(max_length=150, verbose_name = 'Токен', blank=True, null=True)
+
     USERNAME_FIELD = "email"  # Указывает что email будет использоваться дл аутентификации пользователя
     REQUIRED_FIELDS = []   # Указывает какие поля могут быть обязательны для создания пользователя
 
