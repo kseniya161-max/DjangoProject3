@@ -9,6 +9,7 @@
                 <a class="nav-link" href="{% url 'travel_app:home' %}">Главная</a>
             </li>
                 <a class="nav-link" href="{% url 'travel_app:contact' %}">Контакты</a>
+                <a class="nav-link" href="{% url 'travel_app:home' %}">Список товаров</a>
                 {% if user.is_authenticated %}
                 <a class="nav-link" href="{% url 'users:logout' %}">Выйти</a>
                 {% else %}
