@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-class Users(AbstractUser):
+class User(AbstractUser):
     username = None
     email = models.EmailField(max_length=50, unique=True, verbose_name='Email', help_text='Введите email')
     phone = models.CharField(max_length=50, verbose_name= 'Телефон',blank=True, null=True, help_text='Введите номер телефона')
