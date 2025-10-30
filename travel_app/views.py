@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 from .models import Product
@@ -29,7 +30,7 @@ class ContactView(TemplateView):
     template_name= 'contact.html'
 
 
-class AddProductView(CreateView):
+class AddProductView(LoginRequiredMixin, CreateView):
     """Создает продукт"""
     model = Product
     form_class = ProductForm
@@ -38,7 +39,7 @@ class AddProductView(CreateView):
 
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     """Редактирует продукт"""
     model = Product
     form_class = ProductForm
