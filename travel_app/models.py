@@ -26,7 +26,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True,verbose_name="Дата изменения")
     is_favorite = models.BooleanField(default=False, verbose_name="Избранное")
     status_publication = models.BooleanField(default=False, verbose_name="Статус публикации")
-
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Владелец')
 
 
     def __str__(self):
