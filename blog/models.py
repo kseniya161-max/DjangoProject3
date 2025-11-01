@@ -12,6 +12,11 @@ class BlogPost(models.Model):
         ordering = ['-created_at']
         verbose_name = 'Блог'
         verbose_name_plural = 'Блоги'
+        permissiond = [
+            ('can_publish_blog_post', 'Can publish blog post'),
+            ('can_unpublish_blog_post', 'Can unpublish blog post'),
+            ('can_delete_blog_post', 'Can delete blog post'),
+        ]
 
 
     def __str__(self):
