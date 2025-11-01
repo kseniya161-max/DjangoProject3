@@ -25,7 +25,8 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создание")
     updated_at = models.DateTimeField(auto_now=True,verbose_name="Дата изменения")
     is_favorite = models.BooleanField(default=False, verbose_name="Избранное")
-    status_publication = models.BooleanField(default=False)
+    status_publication = models.BooleanField(default=False, verbose_name="Статус публикации")
+
 
 
     def __str__(self):

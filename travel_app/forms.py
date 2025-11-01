@@ -62,4 +62,4 @@ class ProductModeratorForm(ModelForm):
     """ Форма модерации Продукта"""
     class Meta:
         model = Product
-        fields = ['status_publication',]
+        fields = ['status_publication', ]

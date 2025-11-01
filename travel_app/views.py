@@ -49,7 +49,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form_class(self):
         user = self.request.user
-        if user.has_perm('can_unpublish_product') and user.has.perm('can_delete_product'):
+        if user.has_perm('can_unpublish_product'):
             return ProductModeratorForm
         raise PermissionDenied
 
@@ -59,6 +59,12 @@ class ProductDeleteView(DeleteView):
     model = Product
     template_name = 'delete_product.html'
     success_url = reverse_lazy('travel_app:home')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm('travel_app.can_delete_product'):
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
+
 
 
 
