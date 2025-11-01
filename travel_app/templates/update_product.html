@@ -5,12 +5,13 @@
 <div class="container">
     <h1 class="text-center mt-4 mb-4">Редактировать товар</h1>
     <form method="POST" enctype="multipart/form-data">
-         {% csrf_token %}
-         {{ form.as_p }}
-
-         <button type="submit" class="btn btn-primary">Сохранить</button>
-         <a href="{% url 'travel_app:product_detail' object.id %}" class="btn btn-primary">Назад</a>
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if user == object.owner %}
+        <button type="submit" class="btn btn-primary mt-4 mb-4">Сохранить</button>
+        {% endif %}
     </form>
+    <a href="{% url 'travel_app:product_detail' object.id %}" class="btn btn-primary">Назад</a>
 </div>
 
 {% endblock %}

@@ -58,3 +58,8 @@ class ProductForm(ModelForm):
             raise ValidationError('Цена не может быть равна или меньше 0')
         return price
 
+class ProductModeratorForm(ModelForm):
+    """ Форма модерации Продукта"""
+    class Meta:
+        model = Product
+        fields = ['status_publication', ]

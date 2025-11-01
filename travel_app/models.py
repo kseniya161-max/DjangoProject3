@@ -1,5 +1,7 @@
 from django.db import models
 from django import forms
+from django.conf import settings
+
 
 
 class Category(models.Model):
@@ -25,6 +27,9 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создание")
     updated_at = models.DateTimeField(auto_now=True,verbose_name="Дата изменения")
     is_favorite = models.BooleanField(default=False, verbose_name="Избранное")
+    status_publication = models.BooleanField(default=False, verbose_name="Статус публикации")
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Владелец', default=14)
+
 
     def __str__(self):
         return f'{self.name} {self.price}'
@@ -33,3 +38,7 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ['name']
+        permissions = [
+            ('can_unpublish_product', 'Can unpublish product'),
+            ('can_delete_product', 'Can delete product'),
+        ]
