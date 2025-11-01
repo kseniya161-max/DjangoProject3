@@ -52,6 +52,13 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'update_product.html'
     success_url = reverse_lazy('travel_app:home')
 
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.owner != request.user and not request.user.has_perm('travel_app.can_unpublish_product'):
+            raise PermissionDenied (" У вас нет прав на редактирование продукта т.к. вы не Владелец и не имеете разрешения")
+        return super().dispatch(request, *args, **kwargs)
+
 
     def get_form_class(self):
         user = self.request.user
@@ -69,6 +76,11 @@ class ProductDeleteView(DeleteView):
     success_url = reverse_lazy('travel_app:home')
 
     def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.owner != request.user and not request.user.has_perm('travel_app.can_delete_product'):
+            raise PermissionDenied(
+                " У вас нет прав на удаление продукта т.к. вы не Владелец и не имеете разрешения")
         if not request.user.has_perm('travel_app.can_delete_product'):
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
