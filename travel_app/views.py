@@ -55,7 +55,9 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form_class(self):
         user = self.request.user
-        if user.has_perm('can_unpublish_product'):
+        if user == self.object.owner:
+            return ProductForm
+        if user.has_perm('travel_app.can_unpublish_product'):
             return ProductModeratorForm
         raise PermissionDenied
 
