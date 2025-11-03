@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ travel_product.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">Информация о товаре</h1>
+     <a href="{% url 'travel_app:add_product' %}" class="btn btn-warning mt-4 mb-4">Создать товар</a>
+    <div class="card" style="width: 18rem;">
+        {% if travel_product.photo %}
+            <img src="{{ travel_product.photo.url }}" class="card-img-top" alt="{{ travel_product.name }}">
+        {% else %}
+            <img src="/media/P.png" class="card-img-top" alt="default_image">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ travel_product.name }}</h5>
+            <p class="card-text">{{ travel_product.description }}</p>
+            <p class="card-text"><strong>Цена:</strong> {{ travel_product.price }} руб.</p>
+            <p class="card-text"><strong>Категория:</strong> {{ travel_product.category.name }}</p>
+            <a href="{% url 'travel_app:home' %}" class="btn btn-primary">Назад</a>
+            {% if user.is_authenticated %}
+            {% if user == travel_product.owner %}
+            <a href="{% url 'travel_app:product_update' travel_product.id %}" class="btn btn-primary">Редактировать</a>
+            {% endif %}
+            {% if user == travel_product.owner %}
+            <a href="{% url 'travel_app:product_delete' travel_product.id %}" class="btn btn-danger mt-4">Удалить</a>
+            {% endif %}
+            {% else %}
+            <a class="btn btn-primary mt-4 mb-4" href="{% url 'users:login' %}">Войти</a>
+            <a class="btn btn-primary mt-1 mb-1" href="{% url 'users:register' %}">Регистрация</a>
+            {% csrf_token %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mt-4 mb-4">Список товаров</h1>
+    {% if user.is_authenticated %}
+    <a href="{% url 'travel_app:add_product' %}" class="btn btn-warning mt-4 mb-4">Создать товар</a>
+    {% endif %}
+    <div class="row">
+        {% for product in page_object %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    {% if product.photo %}
+                        <img src="{{ product.photo.url }}" class="card-img-top" alt="{{ product.name }}">
+                    {% else %}
+                        <img src="{% static 'media/products/P.png' %}" class="card-img-top" alt="default_image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description|slice:":100" }}{% if product.description|length > 100 %}...{% endif %}</p>
+                        <a href="{% url 'travel_app:product_detail' product.id %}" class="btn btn-primary">Подробнее</a>
+                        {% if user.is_authenticated %}
+                        {% if user == product.owner %}
+                        <a href="{% url 'travel_app:product_update' product.id %}" class="btn btn-primary">Редактировать</a>
+                        <a href="{% url 'travel_app:product_delete' product.id %}" class="btn btn-danger mt-4">Удалить</a>
+                        {% endif %}
+                        {% else %}
+                        <a class="btn btn-primary mt-1 mb-1" href="{% url 'users:login' %}">Войти</a>
+                        <a class="btn btn-primary mt-1 mb-1" href="{% url 'users:register' %}">Регистрация</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+             {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; первый</a>
+                <a href="?page={{ page_obj.previous_page_number }}">предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}  {# Проверка на наличие следующей страницы #}
+                <a href="?page={{ page_obj.next_page_number }}">следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>  {# Закрытие контейнера для навигации #}
+</div>
+{% endblock %}
