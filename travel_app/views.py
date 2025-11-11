@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 from .models import Product
 from django.core.paginator import Paginator
 from .forms import ProductForm, ProductModeratorForm
+from .services import get_list_from_cache
 
 
 class HomeListView(ListView):
@@ -15,7 +16,7 @@ class HomeListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return Product.objects.all()
+        return get_list_from_cache()
 
 
 class ProductDetailView(DetailView):
