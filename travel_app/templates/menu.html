@@ -11,6 +11,7 @@
                 <li><a class="nav-link" href="{% url 'travel_app:contact' %}">Контакты</a></li>
             <li><a class="nav-link" href="{% url 'travel_app:home' %}">Список товаров</a></li>
             <li><a class="nav-link" href="{% url 'travel_app:categories' %}">Категории</a></li>
+            <li><a class="nav-link" href="{% url 'blog:home_blog' %}">Блог</a></li>
                 {% if user.is_authenticated %}
                     <form method="post" action="{% url 'users:logout' %}" style="display:inline;">
                     {% csrf_token %}
