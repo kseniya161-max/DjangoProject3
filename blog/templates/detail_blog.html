@@ -2,7 +2,7 @@
 {% block content %}
 
 <h2>{{ post.header }}</h2>
-<p>{{ post.content}}</p>
+<p>{{ post.content|linebreaks}}</p>
 <p>Дата создания: {{ post.created_at }}</p>
 <p>Количество просмотров: {{ post.views_count }}</p>
 <p>Опубликовано: {{ post.is_published }}</p>
