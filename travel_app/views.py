@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 from .models import Product
 from django.core.paginator import Paginator
 from .forms import ProductForm, ProductModeratorForm
-from .services import get_list_from_cache
+from .services import get_list_from_cache, get_category_product
 
 
 class HomeListView(ListView):
@@ -87,6 +87,15 @@ class ProductDeleteView(DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
 
+class CategoryProductListView(ListView):
+    """ Отображает страницу со списком продуктов определенной категории"""
+    model = Product
+    template_name = 'category_product.html'
+    context_object_name ='category_list'
+
+    def get_queryset(self):
+        category = self.kwargs.get('category')
+        return get_category_product(category)
 
 
 
