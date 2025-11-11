@@ -1,7 +1,5 @@
+.transparent-background {
+    background-color: rgba(173, 216, 230, 0.5);
 
-body {
-    background-image: url("{% static 'images/фон.jpg' %}") !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
 }
+

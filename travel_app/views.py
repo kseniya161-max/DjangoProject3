@@ -103,6 +103,7 @@ class CategoryView(ListView):
     model = Category
     template_name = 'all_category.html'
     context_object_name= 'categories'
+    success_url = reverse_lazy('travel_app:category/<int:category_id>/')
 
     def get_queryset(self):
         categories = Category.objects.all()
