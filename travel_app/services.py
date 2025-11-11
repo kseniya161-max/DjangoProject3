@@ -17,9 +17,13 @@ def get_list_from_cache():
     return products
 
 
-def get_category_product(category):
-    """Получение списка продуктов отфильтрованного по категориям"""
-    if not category:
+def get_category_product(category_id):
+    """Получение списка продуктов отфильтрованного по ID категориям"""
+    if not category_id:
+        return None
+    try:
+        category = Category.objects.get(id=category_id)
+    except Category.DoesNotExist:
         return None
     products = Product.objects.filter(category=category)
     return products

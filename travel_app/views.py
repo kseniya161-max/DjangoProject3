@@ -94,8 +94,8 @@ class CategoryProductListView(ListView):
     context_object_name ='category_list'
 
     def get_queryset(self):
-        category = self.kwargs.get('category')
-        return get_category_product(category)
+        category_id = self.kwargs.get('category_id')
+        return get_category_product(category_id)
 
 
 
