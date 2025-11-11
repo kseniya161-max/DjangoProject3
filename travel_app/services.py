@@ -1,7 +1,7 @@
 from django.core.cache import cache
 
 from config.settings import CACHE_ENABLED
-from travel_app.models import Product
+from travel_app.models import Product, Category
 
 
 def get_list_from_cache():
@@ -14,4 +14,12 @@ def get_list_from_cache():
         return products
     products = Product.objects.all()
     cache.set(key, products)
+    return products
+
+
+def get_category_product(category):
+    """Получение списка продуктов отфильтрованного по категориям"""
+    if not category:
+        return None
+    products = Product.objects.filter(category=category)
     return products
