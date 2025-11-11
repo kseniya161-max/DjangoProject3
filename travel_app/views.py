@@ -90,7 +90,7 @@ class ProductDeleteView(DeleteView):
 class CategoryProductListView(ListView):
     """ Отображает страницу со списком продуктов определенной категории"""
     model = Product
-    template_name = 'category_product.html'
+    template_name = 'category_list.html'
     context_object_name ='category_list'
 
     def get_queryset(self):
