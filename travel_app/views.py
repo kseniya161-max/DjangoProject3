@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
-from .models import Product
+from .models import Product, Category
 from django.core.paginator import Paginator
 from .forms import ProductForm, ProductModeratorForm
 from .services import get_list_from_cache, get_category_product
@@ -96,6 +96,17 @@ class CategoryProductListView(ListView):
     def get_queryset(self):
         category_id = self.kwargs.get('category_id')
         return get_category_product(category_id)
+
+
+class CategoryView(ListView):
+    """Отображает список всех категорий"""
+    model = Category
+    template_name = 'all_category.html'
+    context_object_name= 'categories'
+
+    def get_queryset(self):
+        categories = Category.objects.all()
+        return categories
 
 
 
