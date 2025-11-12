@@ -12,7 +12,7 @@ def get_list_from_cache():
     products = cache.get(key)
     if products is not None:
         return products
-    products = Product.objects.all()
+    products = list(Product.objects.select_related('category').all())
     cache.set(key, products)
     return products
 
