@@ -6,6 +6,7 @@ from .models import Product, Category
 from django.core.paginator import Paginator
 from .forms import ProductForm, ProductModeratorForm
 from .services import get_list_from_cache, get_category_product
+from django.core.cache import cache
 
 
 class HomeListView(ListView):
@@ -41,8 +42,9 @@ class AddProductView(LoginRequiredMixin, CreateView):
 
     def form_valid(self,form):
         form.instance.owner = self.request.user
-        return super().form_valid(form)
-
+        response = super().form_valid(form)
+        cache.delete('list_product_cache')
+        return response
 
 
 
@@ -69,6 +71,10 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             return ProductModeratorForm
         raise PermissionDenied
 
+    def form_valid(self, form):
+        cache.delete('list_product_cache')
+        return super().form_valid(form)
+
 
 class ProductDeleteView(DeleteView):
     """Удаляет продукт"""
@@ -85,6 +91,11 @@ class ProductDeleteView(DeleteView):
         if not request.user.has_perm('travel_app.can_delete_product'):
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        cache.delete('list_product_cache')
+        return response
 
 
 class CategoryProductListView(ListView):
