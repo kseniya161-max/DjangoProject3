@@ -2,9 +2,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
-from .models import Product
+from .models import Product, Category
 from django.core.paginator import Paginator
 from .forms import ProductForm, ProductModeratorForm
+from .services import get_list_from_cache, get_category_product
+from django.core.cache import cache
 
 
 class HomeListView(ListView):
@@ -15,7 +17,7 @@ class HomeListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return Product.objects.all()
+        return get_list_from_cache()
 
 
 class ProductDetailView(DetailView):
@@ -40,8 +42,9 @@ class AddProductView(LoginRequiredMixin, CreateView):
 
     def form_valid(self,form):
         form.instance.owner = self.request.user
-        return super().form_valid(form)
-
+        response = super().form_valid(form)
+        cache.delete('list_product_cache')
+        return response
 
 
 
@@ -68,6 +71,10 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             return ProductModeratorForm
         raise PermissionDenied
 
+    def form_valid(self, form):
+        cache.delete('list_product_cache')
+        return super().form_valid(form)
+
 
 class ProductDeleteView(DeleteView):
     """Удаляет продукт"""
@@ -85,7 +92,33 @@ class ProductDeleteView(DeleteView):
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        cache.delete('list_product_cache')
+        return response
 
+
+class CategoryProductListView(ListView):
+    """ Отображает страницу со списком продуктов определенной категории"""
+    model = Product
+    template_name = 'category_list.html'
+    context_object_name ='category_list'
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('category_id')
+        return get_category_product(category_id)
+
+
+class CategoryView(ListView):
+    """Отображает список всех категорий"""
+    model = Category
+    template_name = 'all_category.html'
+    context_object_name= 'categories'
+    success_url = reverse_lazy('travel_app:category/<int:category_id>/')
+
+    def get_queryset(self):
+        categories = Category.objects.all()
+        return categories
 
 
 

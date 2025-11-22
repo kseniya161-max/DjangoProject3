@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Страница категорий{% endblock %}
+
+{% block content %}
+<div class="container transparent-background">
+    <h1 class="text-center mt-4 mb-4">Список категорий</h1>
+    <h3 class="text-center mt-4 mb-4">Выберите интересующую вас категорию</h3>
+    <div class="row">
+        {% for category in categories %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ category.name }}</h5>
+                    <p class="card-text">{{ category.description }}</p>
+                    <a href="{% url 'travel_app:category' category.id %}"
+  class="btn btn-primary">Посмотреть продукты</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
