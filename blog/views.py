@@ -57,9 +57,6 @@ class BlogUpdateView(UpdateView):
             raise PermissionDenied (" У вас нет прав")
         return super().dispatch(request, *args, **kwargs)
 
-        e
-
-
 
 class BlogDeleteView(DeleteView):
     """Удаляет запись Блога"""
